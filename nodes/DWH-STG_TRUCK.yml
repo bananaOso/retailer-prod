@@ -266,6 +266,27 @@ steps:
                   - columnCounter: d5966ac8-bb13-4aab-b64c-6a43c2bde4e4
                     stepCounter: 9c01576e-f6e1-4621-8bbb-3744b18063a6
                 transform: "\"TRUCK\".\"VALUE\":\"YEAR\"::DOUBLE"
+          - acceptedValues:
+              strictMatch: true
+              values: []
+            appliedColumnTests: {}
+            columnReference:
+              columnCounter: c385989f-7640-4971-94b3-ac70f34cbacc
+              stepCounter: 883dc115-0827-4803-8444-6daad62551b6
+            config: {}
+            dataType: Number
+            defaultValue: ""
+            description: ""
+            keyColumnType: None
+            name: TRUCK_AGE_YEAR
+            nullable: true
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: "0"
+                    stepCounter: "0"
+                transform: (YEAR(CURRENT_DATE())-"TRUCK"."YEAR")
+            systemColumnType: None
+            transform: ""
         cteString: ""
         enabledColumnTestIDs: []
         sourceMapping:
