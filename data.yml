@@ -62,7 +62,7 @@ macros:
           CASE WHEN MOD({{ column }}, 2) = 0 THEN 'EVEN' ELSE 'ODD' END
       {%- endmacro %}
 
-      {%- remove_special_characters(column) -%}
+      {%- macro remove_special_characters(column) -%}
           regexp_replace({{column}},'.*[^a-zA-Z0-9 ].*','')
       {%- endmacro %}
 packages: {}
@@ -3931,15 +3931,14 @@ subgraphs:
     name: Analytics
     steps:
       - 9c01576e-f6e1-4621-8bbb-3744b18063a6
-      - f33ee760-e8cd-4b43-b21f-d69b4dc31277
       - 730af1ca-13a2-40bf-97d9-033d324a78cb
       - 5b4ff102-5409-41c0-b2c5-2f63d57afeff
       - 2052b023-aecb-4597-9769-0fb4dceed75d
       - c1822e1a-6eef-4120-ad6a-25aa4f1aab97
       - cc67fe16-e58a-404c-b381-996045f61215
       - 75a9f638-abc9-4d5b-b51b-bdefe7d30949
-      - 11993fe5-dcf6-412c-97a3-aeb71a8850da
-      - e01e209b-ff3f-4a69-bef1-26a311c5a448
+      - 883dc115-0827-4803-8444-6daad62551b6
+      - 9818bd29-efd9-4777-9bed-60a1533bada5
   Subgraph-60:
     id: "60"
     name: INVENTORY_WGT
