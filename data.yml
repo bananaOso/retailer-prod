@@ -63,7 +63,7 @@ macros:
       {%- endmacro %}
 
       {%- macro remove_special_characters(column) -%}
-          regexp_replace({{column}},'.*[^a-zA-Z0-9 ].*','')
+          regexp_replace({{column}},'.[^a-zA-Z0-9 ].*','')
       {%- endmacro %}
 packages: {}
 projects: {}
@@ -3938,7 +3938,6 @@ subgraphs:
       - cc67fe16-e58a-404c-b381-996045f61215
       - 75a9f638-abc9-4d5b-b51b-bdefe7d30949
       - 883dc115-0827-4803-8444-6daad62551b6
-      - 9818bd29-efd9-4777-9bed-60a1533bada5
   Subgraph-60:
     id: "60"
     name: INVENTORY_WGT
