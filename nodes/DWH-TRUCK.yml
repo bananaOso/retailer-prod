@@ -1,0 +1,52 @@
+steps:
+  TRUCK-9c01576e-f6e1-4621-8bbb-3744b18063a6:
+    operation:
+      config:
+        ftype: parquet
+        pyLib: from snowflake.snowpark import Session
+        schemaName: snowpark
+        stage: s3load
+        stagePath: /pos/truck/
+      database: ""
+      deployEnabled: true
+      description: ""
+      isMultisource: false
+      locationName: DWH
+      materializationType: table
+      metadata:
+        appliedNodeTests: []
+        columns:
+          - VALUE: true
+            acceptedValues:
+              strictMatch: true
+              values: []
+            appliedColumnTests: {}
+            columnReference:
+              columnCounter: d5966ac8-bb13-4aab-b64c-6a43c2bde4e4
+              stepCounter: 9c01576e-f6e1-4621-8bbb-3744b18063a6
+            config: {}
+            dataType: VARIANT
+            defaultValue: ""
+            description: ""
+            name: VALUE
+            nullable: true
+            sourceColumnReferences:
+              - columnReferences: []
+                transform: ""
+        cteString: ""
+        enabledColumnTestIDs: []
+        sourceMapping:
+          - aliases: {}
+            customSQL:
+              customSQL: ""
+            dependencies: []
+            join:
+              joinCondition: ""
+            name: TRUCK
+            noLinkRefs: []
+      name: TRUCK
+      overrideSQL: false
+      schema: ""
+      sqlType: "24"
+      type: sql
+    stepCounter: 9c01576e-f6e1-4621-8bbb-3744b18063a6

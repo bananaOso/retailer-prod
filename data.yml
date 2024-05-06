@@ -61,6 +61,10 @@ macros:
       {%- macro even_odd(column) -%}
           CASE WHEN MOD({{ column }}, 2) = 0 THEN 'EVEN' ELSE 'ODD' END
       {%- endmacro %}
+
+      {%- remove_special_characters(column) -%}
+          regexp_replace({{column}},'.*[^a-zA-Z0-9 ].*','')
+      {%- endmacro %}
 packages: {}
 projects: {}
 stepTypes:
@@ -1697,82 +1701,94 @@ stepTypes:
     metadata:
       defaultStorageLocation: null
       error: null
-      nodeMetadataSpec: |
-        capitalized: Stream
-        short: STR
-        tagColor: "yellow"
-        plural: Streams
-
-        deployStrategy: advanced
+      nodeMetadataSpec: |-
+        capitalized: Snowpark Source
+        short: Snowpark Source
+        tagColor: gray
+        plural: Snowpark Sources
 
         config:
+        - groupName: File Location
+          items: 
 
-        - groupName: Stream
-          items:
-
-          - displayName: Initial Rows
-            attributeName: initialRows
-            type: toggleButton
-            default: true
-            isRequired: false
-
-          - displayName: Append Only
-            attributeName: appendOnly
-            type: toggleButton
-            default: false
-            isRequired: false
-
-        - groupName: Hidden config
-          enableIf: "false"
-          items:
-          - displayName: Type
-            type: materializationSelector
-            default: view
+          - displayName: Stage
+            attributeName: stage
+            type: dropdownSelector
+            default: "s3load"
             options:
-            - view
+            - "s3load"
+            - "S3_DATASCIENCE"
+            isRequired: true
+
+          - displayName: Stage Path
+            attributeName: stagePath
+            type: textBox
+            default: "/pos/truck/"
+            isRequired: false
+
+          - displayName: File Type
+            attributeName: ftype
+            type: dropdownSelector
+            default: "parquet"
+            options:
+            - "parquet"
+            - "csv"
+            isRequired: true
+
+          - displayName: Python Libraries
+            attributeName: pyLib
+            type: textBox 
+            syntax: sql
+            isRequired: false   
+            default: "from snowflake.snowpark import Session"
+
+        - groupName: Landing Details 
+          items:
+          - displayName: Schema Name
+            attributeName: schemaName
+            type: textBox
+            default: "snowpark"
             isRequired: true
 
         systemColumns:
-        - displayName: "METADATA$ACTION"
-          transform: "METADATA$ACTION"
-          dataType: STRING
-          placement: end
-          attributeName: isStreamMetadataAction
-          description: Indicates the DML operation (INSERT, DELETE) recorded.
-        - displayName: "METADATA$ISUPDATE"
-          transform: "METADATA$ISUPDATE"
-          dataType: STRING
-          placement: end
-          attributeName: isStreamMetadataIsUpdate
-          description: Indicates whether the operation was part of an UPDATE statement.
-        - displayName: "METADATA$ROW_ID"
-          transform: "METADATA$ROW_ID"
-          dataType: STRING
-          placement: end
-          attributeName: isStreamMetadataRowId
-          description: Specifies the unique and immutable ID for the row, which can be used to track changes to specific rows over time.
+        - displayName: 'VALUE'
+          attributeName: 'VALUE'
+          transform: ''
+          dataType: VARIANT
+          placement: beginning
       templates:
         create:
-          templateString: |-
-            {% if desiredState == undefined %}
+          templateString: |
+            {{ stage('Create Python Procedure ') }}
+            {% set source = sources[0] %}
 
-                {{ stage('Drop Stream') }}
-                DROP STREAM IF EXISTS {{ ref_no_link(currentState.node.location.name, currentState.node.name + "_STR")  }}
-
-            {% else %}
-
-                {{ stage('Create Stream') }}
-                CREATE STREAM IF NOT EXISTS {{ ref_no_link(desiredState.node.location.name, desiredState.node.name + "_STR")  }}
-                ON TABLE {{ ref(desiredState.sources[0].dependencies[0].node.location.name, desiredState.sources[0].dependencies[0].node.name) }}
-                APPEND_ONLY = {% if desiredState.config.appendOnly is true %} TRUE {%- else -%} FALSE {% endif %} 
-                SHOW_INITIAL_ROWS = {% if desiredState.config.initialRows is true %} TRUE {%- else -%} FALSE {% endif %} 
-                COMMENT = 'CDC Stream on {{ this }}'
-
-
-            {% endif %}
+            CREATE OR REPLACE PROCEDURE {{ ref_no_link(node.location.name, 'PROC_' + node.name | upper) | trim }}()
+              returns Table()
+              language python
+              runtime_version = '3.8'
+              packages = ('snowflake-snowpark-python', 'pandas') 
+              handler = 'main'
+            as
+            $$
+            {{ config.pyLib }}
+            import pandas as pd
+            import snowflake.snowpark.functions as F
+            def main(session:Session):
+                location = "@{{config.schemaName}}.{{config.stage}}{{config.stagePath}}"
+                df = session.read.{%- if config.ftype == "csv" -%} option("INFER_SCHEMA", True).{%- endif -%}{{config.ftype}}(location)
+                df.copy_into_table("{{config.schemaName}}.{{node.name}}")
+                df2 = df.to_pandas()
+                df2['VALUE'] = df2.apply(lambda row: row.to_json(), axis=1)
+                df3 = session.create_dataframe(df2)
+                df3 = df3.with_column("VALUE", F.sql_expr("parse_json(VALUE)"))
+                df3.write.mode("overwrite").saveAsTable("{{config.schemaName}}.{{node.name}}")
+                return df
+            $$
         run:
-          templateString: ""
-    name: Stream
+          templateString: |-
+            {{ stage('Run Stored Procedure') }}
+            CALL {{ ref_no_link(node.location.name, 'PROC_' + node.name | upper) | trim }}()
+    name: "Snowpark for Coalesce: Source"
     version: 1
   StepType-25:
     id: "25"
@@ -3313,7 +3329,7 @@ stepTypes:
     version: 1
   StepType-View:
     id: View
-    isDisabled: true
+    isDisabled: false
     metadata:
       defaultStorageLocation: null
       error: null
@@ -3910,6 +3926,20 @@ subgraphs:
       - 7d8b84ba-e9c2-45ce-955a-3f51df08c001
       - 23da740e-50c5-4361-b916-251759082ddb
       - 98a79ee0-39e1-4d29-9b40-12a08dc9fd23
+  Subgraph-6:
+    id: "6"
+    name: Analytics
+    steps:
+      - 9c01576e-f6e1-4621-8bbb-3744b18063a6
+      - f33ee760-e8cd-4b43-b21f-d69b4dc31277
+      - 730af1ca-13a2-40bf-97d9-033d324a78cb
+      - 5b4ff102-5409-41c0-b2c5-2f63d57afeff
+      - 2052b023-aecb-4597-9769-0fb4dceed75d
+      - c1822e1a-6eef-4120-ad6a-25aa4f1aab97
+      - cc67fe16-e58a-404c-b381-996045f61215
+      - 75a9f638-abc9-4d5b-b51b-bdefe7d30949
+      - 11993fe5-dcf6-412c-97a3-aeb71a8850da
+      - e01e209b-ff3f-4a69-bef1-26a311c5a448
   Subgraph-60:
     id: "60"
     name: INVENTORY_WGT
