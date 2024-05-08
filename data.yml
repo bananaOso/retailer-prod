@@ -3939,6 +3939,10 @@ subgraphs:
       - 75a9f638-abc9-4d5b-b51b-bdefe7d30949
       - 883dc115-0827-4803-8444-6daad62551b6
       - 927b59a9-e284-4ee5-8e58-e5d181660732
+      - cb04f6ff-6e59-4d04-a7ea-92c7e964a746
+      - f178e5f7-5e6a-4e4e-b2f2-50c9fe34cf80
+      - dcab0f77-7c7a-4635-afe6-e44f4de79426
+      - b5ec6159-88fd-41ac-b3ae-1ff31cf67542
   Subgraph-60:
     id: "60"
     name: INVENTORY_WGT
