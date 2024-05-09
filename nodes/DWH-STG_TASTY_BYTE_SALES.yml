@@ -1,0 +1,108 @@
+steps:
+  STG_TASTY_BYTE_SALES-aa330237-4280-4442-8653-b028c2beaa55:
+    operation:
+      config:
+        insertStrategy: INSERT
+        postSQL: ""
+        preSQL: ""
+        testsEnabled: true
+        truncateBefore: true
+      database: ""
+      deployEnabled: true
+      description: ""
+      isMultisource: false
+      locationName: DWH
+      materializationType: table
+      metadata:
+        appliedNodeTests: []
+        columns:
+          - acceptedValues:
+              strictMatch: true
+              values: []
+            appliedColumnTests: {}
+            columnReference:
+              columnCounter: fb173b40-193c-4405-9544-7ff3a9619d09
+              stepCounter: aa330237-4280-4442-8653-b028c2beaa55
+            config: {}
+            dataType: DATE
+            description: ""
+            name: DATE
+            nullable: true
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: e55d6040-0508-4240-a6bf-b86f9ae12b96
+                    stepCounter: 5d9c5f57-8347-4634-b59b-2a2c62b2432e
+                transform: DATE("TASTY_BYTE_SALES"."VALUE":"DATE"::DOUBLE)
+          - acceptedValues:
+              strictMatch: true
+              values: []
+            appliedColumnTests: {}
+            columnReference:
+              columnCounter: 2ef49a24-cb3b-4be7-a59b-dbcbcb9297ae
+              stepCounter: aa330237-4280-4442-8653-b028c2beaa55
+            config: {}
+            dataType: STRING
+            description: ""
+            name: MENU_ITEM_NAME
+            nullable: true
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: e55d6040-0508-4240-a6bf-b86f9ae12b96
+                    stepCounter: 5d9c5f57-8347-4634-b59b-2a2c62b2432e
+                transform: "\"TASTY_BYTE_SALES\".\"VALUE\":\"MENU_ITEM_NAME\"::STRING"
+          - acceptedValues:
+              strictMatch: true
+              values: []
+            appliedColumnTests: {}
+            columnReference:
+              columnCounter: 59784941-580b-4323-9666-4cf09dc42587
+              stepCounter: aa330237-4280-4442-8653-b028c2beaa55
+            config: {}
+            dataType: STRING
+            description: ""
+            name: PRIMARY_CITY
+            nullable: true
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: e55d6040-0508-4240-a6bf-b86f9ae12b96
+                    stepCounter: 5d9c5f57-8347-4634-b59b-2a2c62b2432e
+                transform: "\"TASTY_BYTE_SALES\".\"VALUE\":\"PRIMARY_CITY\"::STRING"
+          - acceptedValues:
+              strictMatch: true
+              values: []
+            appliedColumnTests: {}
+            columnReference:
+              columnCounter: b20736e9-85f5-45d6-86c9-60da8c0e5bb3
+              stepCounter: aa330237-4280-4442-8653-b028c2beaa55
+            config: {}
+            dataType: DOUBLE
+            description: ""
+            name: TOTAL_SOLD
+            nullable: true
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: e55d6040-0508-4240-a6bf-b86f9ae12b96
+                    stepCounter: 5d9c5f57-8347-4634-b59b-2a2c62b2432e
+                transform: "\"TASTY_BYTE_SALES\".\"VALUE\":\"TOTAL_SOLD\"::DOUBLE"
+        cteString: ""
+        enabledColumnTestIDs: []
+        sourceMapping:
+          - aliases: {}
+            customSQL:
+              customSQL: ""
+            dependencies:
+              - locationName: DWH
+                nodeName: TASTY_BYTE_SALES
+            join:
+              joinCondition: |-
+                FROM {{ ref('DWH', 'TASTY_BYTE_SALES') }} "TASTY_BYTE_SALES"
+                WHERE date > (SELECT max(date) - interval '1 year' FROM {{ ref('DWH', 'TASTY_BYTE_SALES') }})
+                GROUP BY all
+            name: STG_TASTY_BYTE_SALES
+            noLinkRefs: []
+      name: STG_TASTY_BYTE_SALES
+      overrideSQL: false
+      schema: ""
+      sqlType: Stage
+      type: sql
+    stepCounter: aa330237-4280-4442-8653-b028c2beaa55

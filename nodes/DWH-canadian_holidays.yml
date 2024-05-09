@@ -1,0 +1,85 @@
+steps:
+  canadian_holidays-a5e755c7-3f11-400c-b169-5a89264d5ebb:
+    operation:
+      config:
+        insertStrategy: INSERT
+        postSQL: ""
+        preSQL: ""
+        testsEnabled: true
+        truncateBefore: true
+      database: ""
+      deployEnabled: true
+      description: |-
+        The Public Holiday Calendar provides reference data containing government-designated holidays for 119 countries since 1970, as well as the financial market holidays for the European Central Bank (ECB) and New York Stock Exchange (NYSE).
+        Provides historical values for each public holiday by GEO_ID.
+        Each row represents a distinct timeseries, date, and holiday name by geographic entity. It identifies whether the holiday is financial.
+      isMultisource: false
+      locationName: DWH
+      materializationType: table
+      metadata:
+        appliedNodeTests: []
+        columns:
+          - columnReference:
+              columnCounter: f110651d-30aa-4c1d-8e30-73a132845450
+              stepCounter: a5e755c7-3f11-400c-b169-5a89264d5ebb
+            dataType: DATE
+            description: Date associated with the event
+            name: DATE
+            nullable: true
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: f6667da5-d9c3-4fee-a3f6-0b23275aa620
+                    stepCounter: d231fed5-a720-4c13-b7bd-bd057eb41bb4
+                transform: ""
+          - columnReference:
+              columnCounter: 2aeb8451-7787-4676-8aab-ecd7ebb97243
+              stepCounter: a5e755c7-3f11-400c-b169-5a89264d5ebb
+            dataType: VARCHAR(16777216)
+            description: Name of the Holiday
+            name: HOLIDAY_NAME
+            nullable: true
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 3ada3bd4-f7df-4ede-b8ab-d63d5db4b777
+                    stepCounter: d231fed5-a720-4c13-b7bd-bd057eb41bb4
+                transform: ""
+          - columnReference:
+              columnCounter: 88f2164c-a4d8-44a7-b695-45d901b48749
+              stepCounter: a5e755c7-3f11-400c-b169-5a89264d5ebb
+            dataType: BOOLEAN
+            description: Boolean denoting a stock market closure for the given region
+            name: IS_FINANCIAL
+            nullable: true
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 80a90a53-de22-4b37-a577-b3fdd99a636d
+                    stepCounter: d231fed5-a720-4c13-b7bd-bd057eb41bb4
+                transform: ""
+        cteString: ""
+        enabledColumnTestIDs: []
+        sourceMapping:
+          - aliases: {}
+            customSQL:
+              customSQL: ""
+            dependencies:
+              - locationName: DATA_MARKETPLACE
+                nodeName: PUBLIC_HOLIDAY_CALENDAR
+            join:
+              joinCondition: |-
+                FROM {{ ref('DATA_MARKETPLACE', 'PUBLIC_HOLIDAY_CALENDAR') }} "PUBLIC_HOLIDAY_CALENDAR"
+                WHERE
+                    ISO_ALPHA2 LIKE 'CA'
+                    AND date > '2022-01-01'
+                    AND (
+                        subdivision IS null
+                        OR subdivision LIKE 'BC'
+                    )
+                ORDER BY date ASC
+            name: canadian_holidays
+            noLinkRefs: []
+      name: canadian_holidays
+      overrideSQL: false
+      schema: ""
+      sqlType: Stage
+      type: sql
+    stepCounter: a5e755c7-3f11-400c-b169-5a89264d5ebb

@@ -1,0 +1,188 @@
+steps:
+  STG_SHIFT_SALES_HARMONIZED-cc6976f0-84d3-4f6f-888e-0319ff8c8811:
+    operation:
+      config:
+        insertStrategy: INSERT
+        postSQL: ""
+        preSQL: ""
+        testsEnabled: true
+        truncateBefore: true
+      database: ""
+      deployEnabled: true
+      description: ""
+      isMultisource: false
+      locationName: DWH
+      materializationType: table
+      metadata:
+        appliedNodeTests: []
+        columns:
+          - columnReference:
+              columnCounter: 244b70f0-0a49-4e36-9be6-4dffe41fea75
+              stepCounter: cc6976f0-84d3-4f6f-888e-0319ff8c8811
+            dataType: DOUBLE
+            description: ""
+            name: location_id
+            nullable: true
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: b932556b-9ee8-4b7e-8d23-c64023cb01c2
+                    stepCounter: dcab0f77-7c7a-4635-afe6-e44f4de79426
+                transform: ""
+          - columnReference:
+              columnCounter: a6518d02-86c0-47e0-9b4b-f373ce2e7e84
+              stepCounter: cc6976f0-84d3-4f6f-888e-0319ff8c8811
+            dataType: STRING
+            description: ""
+            name: city
+            nullable: true
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 8e0f2547-8007-4762-859e-909c93c61d1a
+                    stepCounter: dcab0f77-7c7a-4635-afe6-e44f4de79426
+                transform: ""
+          - columnReference:
+              columnCounter: 975b1b2e-ee6e-4419-8740-5092beaaae0f
+              stepCounter: cc6976f0-84d3-4f6f-888e-0319ff8c8811
+            dataType: DOUBLE
+            description: ""
+            name: date
+            nullable: true
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 5a0a5225-1f8f-4177-9a15-f144322c9972
+                    stepCounter: dcab0f77-7c7a-4635-afe6-e44f4de79426
+                transform: ""
+          - columnReference:
+              columnCounter: 459fbd1e-de67-4401-9a31-59405eb82851
+              stepCounter: cc6976f0-84d3-4f6f-888e-0319ff8c8811
+            dataType: DOUBLE
+            description: ""
+            name: shift_sales
+            nullable: true
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: dcd915be-ed7b-4986-ae2c-51c480c64d81
+                    stepCounter: dcab0f77-7c7a-4635-afe6-e44f4de79426
+                transform: ""
+          - columnReference:
+              columnCounter: 612e0686-9965-4b6c-9863-686897c8d836
+              stepCounter: cc6976f0-84d3-4f6f-888e-0319ff8c8811
+            dataType: STRING
+            description: ""
+            name: shift
+            nullable: true
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: caf74cb6-a8a1-4db4-977a-06233abb10a4
+                    stepCounter: dcab0f77-7c7a-4635-afe6-e44f4de79426
+                transform: ""
+          - columnReference:
+              columnCounter: 71468779-4429-4797-8e60-af3184efc573
+              stepCounter: cc6976f0-84d3-4f6f-888e-0319ff8c8811
+            dataType: DOUBLE
+            description: ""
+            name: month_number
+            nullable: true
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: dec1d127-98d5-45f0-baf7-77631d0728a4
+                    stepCounter: dcab0f77-7c7a-4635-afe6-e44f4de79426
+                transform: ""
+          - columnReference:
+              columnCounter: 8e3e7068-2dcb-4851-a71a-21d77254d041
+              stepCounter: cc6976f0-84d3-4f6f-888e-0319ff8c8811
+            dataType: DOUBLE
+            description: ""
+            name: day_of_week
+            nullable: true
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: c190999d-13d9-4158-8baf-46d93118a007
+                    stepCounter: dcab0f77-7c7a-4635-afe6-e44f4de79426
+                transform: ""
+          - columnReference:
+              columnCounter: 8b8cc216-3dc0-4441-935b-b8dbdd1a3619
+              stepCounter: cc6976f0-84d3-4f6f-888e-0319ff8c8811
+            dataType: DOUBLE
+            description: ""
+            name: city_population
+            nullable: true
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 372e7adf-cf3d-4f67-bd9f-654992803b94
+                    stepCounter: dcab0f77-7c7a-4635-afe6-e44f4de79426
+                transform: ""
+          - columnReference:
+              columnCounter: c7e5ccf4-6e44-4f0d-98e3-24bc45b0bcc0
+              stepCounter: cc6976f0-84d3-4f6f-888e-0319ff8c8811
+            dataType: FLOAT
+            description: ""
+            name: LATITUDE
+            nullable: true
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 42f42db8-65e0-49e4-a228-84d268a0211a
+                    stepCounter: b5ec6159-88fd-41ac-b3ae-1ff31cf67542
+                transform: ""
+          - columnReference:
+              columnCounter: a7f6830a-7e98-4df5-93bd-7a913f6f5e8b
+              stepCounter: cc6976f0-84d3-4f6f-888e-0319ff8c8811
+            dataType: FLOAT
+            description: ""
+            name: LONGITUDE
+            nullable: true
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 4f968821-9667-4266-a6a6-5c589a8a666f
+                    stepCounter: b5ec6159-88fd-41ac-b3ae-1ff31cf67542
+                transform: ""
+          - columnReference:
+              columnCounter: 5e163797-48ed-4e46-9a93-e777a4650308
+              stepCounter: cc6976f0-84d3-4f6f-888e-0319ff8c8811
+            dataType: VARCHAR(16777216)
+            description: ""
+            name: STREET_ADDRESS
+            nullable: true
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: e8161ea3-e11c-4c73-a81e-16612c6ac1f0
+                    stepCounter: b5ec6159-88fd-41ac-b3ae-1ff31cf67542
+                transform: ""
+          - columnReference:
+              columnCounter: 78a5525e-211f-42f6-8d09-466e2bf06b78
+              stepCounter: cc6976f0-84d3-4f6f-888e-0319ff8c8811
+            dataType: VARCHAR(16777216)
+            description: ""
+            name: LOCATION_NAME
+            nullable: true
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 9fc3401e-6319-41a3-b5f9-1c865d5a3032
+                    stepCounter: b5ec6159-88fd-41ac-b3ae-1ff31cf67542
+                transform: ""
+        cteString: ""
+        enabledColumnTestIDs: []
+        sourceMapping:
+          - aliases:
+              STG_FROSTBYTE_TB_SAFEGRAPH_S: b5ec6159-88fd-41ac-b3ae-1ff31cf67542
+              STG_SHIFT_SALES: dcab0f77-7c7a-4635-afe6-e44f4de79426
+            customSQL:
+              customSQL: ""
+            dependencies:
+              - locationName: DWH
+                nodeName: STG_FROSTBYTE_TB_SAFEGRAPH_S
+              - locationName: DWH
+                nodeName: STG_SHIFT_SALES
+            join:
+              joinCondition: |-
+                FROM {{ ref('DWH', 'STG_SHIFT_SALES') }} "STG_SHIFT_SALES"
+                INNER JOIN {{ ref('DWH', 'STG_FROSTBYTE_TB_SAFEGRAPH_S') }} "STG_FROSTBYTE_TB_SAFEGRAPH_S"
+                ON "STG_SHIFT_SALES"."location_id" = "STG_FROSTBYTE_TB_SAFEGRAPH_S"."LOCATION_ID"
+            name: STG_SHIFT_SALES_HARMONIZED
+            noLinkRefs: []
+      name: STG_SHIFT_SALES_HARMONIZED
+      overrideSQL: false
+      schema: ""
+      sqlType: Stage
+      type: sql
+    stepCounter: cc6976f0-84d3-4f6f-888e-0319ff8c8811

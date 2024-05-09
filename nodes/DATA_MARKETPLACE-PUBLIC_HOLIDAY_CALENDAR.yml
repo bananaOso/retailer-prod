@@ -1,0 +1,111 @@
+steps:
+  PUBLIC_HOLIDAY_CALENDAR-d231fed5-a720-4c13-b7bd-bd057eb41bb4:
+    operation:
+      database: ""
+      dataset: ""
+      deployEnabled: true
+      description: |-
+        The Public Holiday Calendar provides reference data containing government-designated holidays for 119 countries since 1970, as well as the financial market holidays for the European Central Bank (ECB) and New York Stock Exchange (NYSE).
+        Provides historical values for each public holiday by GEO_ID.
+        Each row represents a distinct timeseries, date, and holiday name by geographic entity. It identifies whether the holiday is financial.
+      locationName: DATA_MARKETPLACE
+      metadata:
+        columns:
+          - acceptedValues:
+              strictMatch: true
+              values: []
+            appliedColumnTests: {}
+            columnReference:
+              columnCounter: bebaa2da-d4b3-4ae0-9228-44f2604d5628
+              stepCounter: d231fed5-a720-4c13-b7bd-bd057eb41bb4
+            config: {}
+            dataType: VARCHAR(16777216)
+            defaultValue: ""
+            description: GEO_ID from GEOGRAPHY_INDEX table
+            name: GEO_ID
+            nullable: true
+            primaryKey: false
+            uniqueKey: false
+          - acceptedValues:
+              strictMatch: true
+              values: []
+            appliedColumnTests: {}
+            columnReference:
+              columnCounter: fc91d971-672c-4ad7-b96c-cd73dce51653
+              stepCounter: d231fed5-a720-4c13-b7bd-bd057eb41bb4
+            config: {}
+            dataType: VARCHAR(16777216)
+            defaultValue: ""
+            description: 2 letter country code from International Organization for Standardization
+            name: ISO_ALPHA2
+            nullable: true
+            primaryKey: false
+            uniqueKey: false
+          - acceptedValues:
+              strictMatch: true
+              values: []
+            appliedColumnTests: {}
+            columnReference:
+              columnCounter: f6667da5-d9c3-4fee-a3f6-0b23275aa620
+              stepCounter: d231fed5-a720-4c13-b7bd-bd057eb41bb4
+            config: {}
+            dataType: DATE
+            defaultValue: ""
+            description: Date associated with the event
+            name: DATE
+            nullable: true
+            primaryKey: false
+            uniqueKey: false
+          - acceptedValues:
+              strictMatch: true
+              values: []
+            appliedColumnTests: {}
+            columnReference:
+              columnCounter: 3ada3bd4-f7df-4ede-b8ab-d63d5db4b777
+              stepCounter: d231fed5-a720-4c13-b7bd-bd057eb41bb4
+            config: {}
+            dataType: VARCHAR(16777216)
+            defaultValue: ""
+            description: Name of the Holiday
+            name: HOLIDAY_NAME
+            nullable: true
+            primaryKey: false
+            uniqueKey: false
+          - acceptedValues:
+              strictMatch: true
+              values: []
+            appliedColumnTests: {}
+            columnReference:
+              columnCounter: 66990b7b-ddec-4d13-8985-9529da1f6298
+              stepCounter: d231fed5-a720-4c13-b7bd-bd057eb41bb4
+            config: {}
+            dataType: VARCHAR(16777216)
+            defaultValue: ""
+            description: State, province, or other underlying geography that is specific to the holiday
+            name: SUBDIVISION
+            nullable: true
+            primaryKey: false
+            uniqueKey: false
+          - acceptedValues:
+              strictMatch: true
+              values: []
+            appliedColumnTests: {}
+            columnReference:
+              columnCounter: 80a90a53-de22-4b37-a577-b3fdd99a636d
+              stepCounter: d231fed5-a720-4c13-b7bd-bd057eb41bb4
+            config: {}
+            dataType: BOOLEAN
+            defaultValue: ""
+            description: Boolean denoting a stock market closure for the given region
+            name: IS_FINANCIAL
+            nullable: true
+            primaryKey: false
+            uniqueKey: false
+        join:
+          joinCondition: FROM {{ ref('DATA_MARKETPLACE', 'PUBLIC_HOLIDAY_CALENDAR') }}
+      name: PUBLIC_HOLIDAY_CALENDAR
+      schema: ""
+      sqlType: Source
+      table: PUBLIC_HOLIDAY_CALENDAR
+      type: sourceInput
+    stepCounter: d231fed5-a720-4c13-b7bd-bd057eb41bb4

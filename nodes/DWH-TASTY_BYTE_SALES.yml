@@ -1,0 +1,52 @@
+steps:
+  TASTY_BYTE_SALES-5d9c5f57-8347-4634-b59b-2a2c62b2432e:
+    operation:
+      config:
+        ftype: csv
+        pyLib: from snowflake.snowpark import Session
+        schemaName: snowpark
+        stage: S3LOAD_ML
+        stagePath: /ml_functions_quickstart.csv
+      database: ""
+      deployEnabled: true
+      description: ""
+      isMultisource: false
+      locationName: DWH
+      materializationType: table
+      metadata:
+        appliedNodeTests: []
+        columns:
+          - VALUE: true
+            acceptedValues:
+              strictMatch: true
+              values: []
+            appliedColumnTests: {}
+            columnReference:
+              columnCounter: e55d6040-0508-4240-a6bf-b86f9ae12b96
+              stepCounter: 5d9c5f57-8347-4634-b59b-2a2c62b2432e
+            config: {}
+            dataType: VARIANT
+            defaultValue: ""
+            description: ""
+            name: VALUE
+            nullable: true
+            sourceColumnReferences:
+              - columnReferences: []
+                transform: ""
+        cteString: ""
+        enabledColumnTestIDs: []
+        sourceMapping:
+          - aliases: {}
+            customSQL:
+              customSQL: ""
+            dependencies: []
+            join:
+              joinCondition: ""
+            name: TASTY_BYTE_SALES
+            noLinkRefs: []
+      name: TASTY_BYTE_SALES
+      overrideSQL: false
+      schema: ""
+      sqlType: "24"
+      type: sql
+    stepCounter: 5d9c5f57-8347-4634-b59b-2a2c62b2432e
