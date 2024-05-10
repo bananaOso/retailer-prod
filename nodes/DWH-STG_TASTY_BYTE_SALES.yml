@@ -14,7 +14,16 @@ steps:
       locationName: DWH
       materializationType: table
       metadata:
-        appliedNodeTests: []
+        appliedNodeTests:
+          - continueOnFailure: true
+            description: ""
+            name: Test
+            runOrder: Before
+            templateString: |-
+              select 
+              MENU_ITEM_NAME
+              from {{ref('DWH','TASTY_BYTE_SALES')}}
+              where REGEXP_LIKE(MENU_ITEM_NAME,'.*[^a-zA-Z0-9\'& ].*')
         columns:
           - acceptedValues:
               strictMatch: true
