@@ -1,0 +1,89 @@
+steps:
+  V_TASTY_BYTE_SALES-dbb9659b-0067-449f-93e1-e4400d88b80c:
+    operation:
+      config:
+        insertStrategy: UNION
+        selectDistinct: false
+      database: ""
+      deployEnabled: true
+      description: ""
+      isMultisource: false
+      locationName: DWH
+      materializationType: view
+      metadata:
+        appliedNodeTests: []
+        columns:
+          - columnReference:
+              columnCounter: 9e506355-8816-4194-856a-83d8bd37014c
+              stepCounter: dbb9659b-0067-449f-93e1-e4400d88b80c
+            dataType: DATE
+            description: ""
+            name: DATE
+            nullable: true
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: fb173b40-193c-4405-9544-7ff3a9619d09
+                    stepCounter: aa330237-4280-4442-8653-b028c2beaa55
+                transform: ""
+          - columnReference:
+              columnCounter: 8a66245d-1d88-44a9-b5fe-e99c99a78b51
+              stepCounter: dbb9659b-0067-449f-93e1-e4400d88b80c
+            dataType: STRING
+            description: ""
+            name: MENU_ITEM_NAME
+            nullable: true
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 2ef49a24-cb3b-4be7-a59b-dbcbcb9297ae
+                    stepCounter: aa330237-4280-4442-8653-b028c2beaa55
+                transform: ""
+          - columnReference:
+              columnCounter: 9bc163cf-494d-47e3-83ff-2883e6d369b5
+              stepCounter: dbb9659b-0067-449f-93e1-e4400d88b80c
+            dataType: DOUBLE
+            description: ""
+            name: TOTAL_SOLD
+            nullable: true
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: b20736e9-85f5-45d6-86c9-60da8c0e5bb3
+                    stepCounter: aa330237-4280-4442-8653-b028c2beaa55
+                transform: ""
+          - columnReference:
+              columnCounter: 4f9b2650-6d7c-4c21-a577-c3c641685339
+              stepCounter: dbb9659b-0067-449f-93e1-e4400d88b80c
+            dataType: VARCHAR(16777216)
+            description: Name of the Holiday
+            name: HOLIDAY_NAME
+            nullable: true
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 2aeb8451-7787-4676-8aab-ecd7ebb97243
+                    stepCounter: a5e755c7-3f11-400c-b169-5a89264d5ebb
+                transform: ""
+        cteString: ""
+        enabledColumnTestIDs: []
+        sourceMapping:
+          - aliases:
+              STG_TASTY_BYTE_SALES: aa330237-4280-4442-8653-b028c2beaa55
+              canadian_holidays: a5e755c7-3f11-400c-b169-5a89264d5ebb
+            customSQL:
+              customSQL: ""
+            dependencies:
+              - locationName: DWH
+                nodeName: canadian_holidays
+              - locationName: DWH
+                nodeName: STG_TASTY_BYTE_SALES
+            join:
+              joinCondition: |-
+                FROM {{ ref('DWH', 'STG_TASTY_BYTE_SALES') }} "STG_TASTY_BYTE_SALES"
+                LEFT JOIN {{ ref('DWH', 'canadian_holidays') }} "canadian_holidays"
+                ON "STG_TASTY_BYTE_SALES"."DATE" = "canadian_holidays"."DATE"
+            name: V_TASTY_BYTE_SALES
+            noLinkRefs: []
+      name: V_TASTY_BYTE_SALES
+      overrideSQL: false
+      schema: ""
+      sqlType: View
+      type: sql
+    stepCounter: dbb9659b-0067-449f-93e1-e4400d88b80c
