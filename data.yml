@@ -15,6 +15,13 @@ jobs:
     name: Process ML
     steps: []
     subgraphs: []
+  Job-4:
+    excludeSelector: ""
+    id: 4
+    includeSelector: "+{ location: DWH name: ML_FCSTS_TASTY_BYTE_SALES }"
+    name: Forecasting
+    steps: []
+    subgraphs: []
   Job-8:
     excludeSelector: "{ name: STG_ML_*} OR { name: ML_* }"
     id: 8
