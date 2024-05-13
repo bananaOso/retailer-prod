@@ -2,7 +2,7 @@ steps:
   STG_TASTY_BYTE_SALES-aa330237-4280-4442-8653-b028c2beaa55:
     operation:
       config:
-        insertStrategy: INSERT
+        insertStrategy: UNION
         postSQL: ""
         preSQL: ""
         testsEnabled: true
@@ -18,7 +18,7 @@ steps:
           - continueOnFailure: true
             description: ""
             name: Test
-            runOrder: Before
+            runOrder: After
             templateString: |-
               select 
               MENU_ITEM_NAME
@@ -93,7 +93,6 @@ steps:
                   - columnCounter: e55d6040-0508-4240-a6bf-b86f9ae12b96
                     stepCounter: 5d9c5f57-8347-4634-b59b-2a2c62b2432e
                 transform: "\"TASTY_BYTE_SALES\".\"VALUE\":\"TOTAL_SOLD\"::DOUBLE"
-        cteString: ""
         enabledColumnTestIDs: []
         sourceMapping:
           - aliases: {}
