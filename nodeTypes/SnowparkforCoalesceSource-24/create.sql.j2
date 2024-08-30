@@ -1,0 +1,25 @@
+{{ stage('Create Python Procedure ') }}
+{% set source = sources[0] %}
+
+CREATE OR REPLACE PROCEDURE {{ ref_no_link(node.location.name, 'PROC_' + node.name | upper) | trim }}()
+  returns Table()
+  language python
+  runtime_version = '3.8'
+  packages = ('snowflake-snowpark-python', 'pandas') 
+  handler = 'main'
+as
+$$
+{{ config.pyLib }}
+import pandas as pd
+import snowflake.snowpark.functions as F
+def main(session:Session):
+    location = "@{{config.schemaName}}.{{config.stage}}{{config.stagePath}}"
+    df = session.read.{%- if config.ftype == "csv" -%} option("INFER_SCHEMA", True).option("PARSE_HEADER",True).{%- endif -%}{{config.ftype}}(location)
+    {% if config.ftype == "parquet" %}df.copy_into_table("{{config.schemaName}}.{{node.name}}"){% endif %}
+    df2 = df.to_pandas()
+    df2['VALUE'] = df2.apply(lambda row: row.to_json(), axis=1)
+    df3 = session.create_dataframe(df2)
+    df3 = df3.with_column("VALUE", F.sql_expr("parse_json(VALUE)"))
+    df3.write.mode("overwrite").saveAsTable("{{config.schemaName}}.{{node.name}}")
+    return df
+$$

@@ -1,0 +1,64 @@
+fileVersion: 1
+id: "24"
+isDisabled: false
+metadata:
+  defaultStorageLocation: null
+  error: null
+  nodeMetadataSpec: |-
+    capitalized: Snowpark Source
+    short: Snowpark Source
+    tagColor: gray
+    plural: Snowpark Sources
+
+    config:
+    - groupName: File Location
+      items: 
+
+      - displayName: Stage
+        attributeName: stage
+        type: dropdownSelector
+        default: "s3load"
+        options:
+        - "s3load"
+        - "S3_DATASCIENCE"
+        - "S3LOAD_ML"
+        isRequired: true
+
+      - displayName: Stage Path
+        attributeName: stagePath
+        type: textBox
+        default: "/pos/truck/"
+        isRequired: false
+
+      - displayName: File Type
+        attributeName: ftype
+        type: dropdownSelector
+        default: "parquet"
+        options:
+        - "parquet"
+        - "csv"
+        isRequired: true
+
+      - displayName: Python Libraries
+        attributeName: pyLib
+        type: textBox 
+        syntax: sql
+        isRequired: false   
+        default: "from snowflake.snowpark import Session"
+
+    - groupName: Landing Details 
+      items:
+      - displayName: Schema Name
+        attributeName: schemaName
+        type: textBox
+        default: "snowpark"
+        isRequired: true
+
+    systemColumns:
+    - displayName: 'VALUE'
+      attributeName: 'VALUE'
+      transform: ''
+      dataType: VARIANT
+      placement: beginning
+name: "Snowpark for Coalesce: Source"
+type: NodeType
