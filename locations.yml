@@ -1,0 +1,15 @@
+defaultStorageMapping: DWH
+fileVersion: 1
+locations:
+  - DATA
+  - DATASTORE
+  - DATA_MARKETPLACE
+  - DWH
+  - INPUT
+  - LAND
+  - PUBLIC
+  - RAW_CUSTOMER
+  - RAW_POS
+  - REFERENCE
+  - STAGE
+  - VIEWS

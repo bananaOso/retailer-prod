@@ -108,21 +108,6 @@ operation:
             transform: ""
       - appliedColumnTests: {}
         columnReference:
-          columnCounter: 0ffe2d81-cd07-4ceb-b896-29ec86061462
-          stepCounter: 1b456835-de85-4056-954c-f4c0c2ae0251
-        config: {}
-        dataType: VARCHAR(50)
-        description: ""
-        hashDetails: null
-        name: STATE
-        nullable: true
-        sourceColumnReferences:
-          - columnReferences:
-              - columnCounter: fdf7ac0e-bf13-42b8-9090-60d008ea7b6d
-                stepCounter: 33548f58-a392-4c27-80ed-5783fef0a139
-            transform: ""
-      - appliedColumnTests: {}
-        columnReference:
           columnCounter: b309ab67-0e48-4523-94b6-e8c48754dc29
           stepCounter: 1b456835-de85-4056-954c-f4c0c2ae0251
         config: {}

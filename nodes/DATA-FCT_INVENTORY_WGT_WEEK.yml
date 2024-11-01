@@ -110,6 +110,23 @@ operation:
         sourceColumnReferences:
           - columnReferences: []
             transform: CAST(CURRENT_TIMESTAMP AS TIMESTAMP)
+      - acceptedValues:
+          strictMatch: false
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 954e929f-124d-4baf-90f5-12a7d0d67af4
+          stepCounter: 4b5f00f4-5dec-4ced-8fc9-255807a28082
+        config: {}
+        dataType: DECIMAL(12,4)
+        description: ""
+        name: STORE_WGT
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: c917c4f8-cd0d-47b4-bdb4-8d5afc774115
+                stepCounter: 6214df34-3cd9-45e2-9ade-14ee5bb1f3d5
+            transform: ""
     cteString: ""
     enabledColumnTestIDs: []
     sourceMapping:

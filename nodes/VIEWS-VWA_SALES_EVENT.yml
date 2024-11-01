@@ -7,7 +7,7 @@ operation:
     selectDistinct: false
   database: ""
   deployEnabled: true
-  description: ""
+  description: View Supports PBI dashboard x
   isMultisource: false
   locationName: VIEWS
   materializationType: view
@@ -601,6 +601,23 @@ operation:
           - columnReferences:
               - columnCounter: 51b01ccc-39d9-4283-979b-ba5e84f3551f
                 stepCounter: f40cbd4e-9b40-4fa8-b8f7-8127a9770fde
+            transform: ""
+      - acceptedValues:
+          strictMatch: false
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 3b39c130-6d0e-4e0e-a618-09bcd07545d0
+          stepCounter: d51a74d6-3827-4601-b6c9-e4623741f668
+        config: {}
+        dataType: DECIMAL(12,4)
+        description: ""
+        name: STORE_WGT
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: bc670ff3-286d-4d3f-8ff7-603e661a7dc5
+                stepCounter: 6c152345-7089-4a3e-a1fb-f86646dfb4df
             transform: ""
     cteString: ""
     enabledColumnTestIDs: []

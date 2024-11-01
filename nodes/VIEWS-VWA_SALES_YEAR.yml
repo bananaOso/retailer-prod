@@ -245,7 +245,7 @@ operation:
           stepCounter: bec5d59f-15c2-42e4-a204-03ea8ab70b1d
         config: {}
         dataType: NUMBER(9,2)
-        description: ""
+        description: <TICKETED COLUMN>
         name: UNITS_BASE
         nullable: true
         sourceColumnReferences:
