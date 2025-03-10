@@ -21,7 +21,7 @@ operation:
           stepCounter: 30f53277-15f6-47da-ac07-4a176dd5e8a4
         config: {}
         dataType: VARCHAR(64)
-        description: ""
+        description: Description
         hashDetails: null
         isBusinessKey: true
         name: ZONE_GEOGRAPHY

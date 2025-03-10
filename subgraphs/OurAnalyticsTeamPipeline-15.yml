@@ -1,0 +1,12 @@
+fileVersion: 1
+id: "15"
+name: Our Analytics Team Pipeline
+steps:
+  - 0813ddc0-613c-4ce4-bce8-0a10ec464af8
+  - 32499007-8daf-416e-9b0a-940aa0500567
+  - 41d8ed72-6fb3-42ea-81a6-626898e8c162
+  - 6deaf504-e80c-4050-810f-1e356357d18c
+  - 7ab06a70-1649-455d-a7ff-cc16a3570ab6
+  - cf01505f-9b0d-4e0d-9478-8f98af586fde
+  - ec04b2d0-34a6-4aaf-a46f-b79f0b88229a
+type: Subgraph

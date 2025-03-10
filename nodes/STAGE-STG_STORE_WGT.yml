@@ -167,6 +167,26 @@ operation:
             transform: |
               100 * CASE WHEN SUM(SUM("VW_TLOG_ZONE"."SALES_INC_VAT")) OVER (PARTITION BY DS_ZONE.ZONE_GEOGRAPHY, "VW_TLOG_ZONE"."PRODKEY")
                <= 0 THEN 0 ELSE SUM("VW_TLOG_ZONE"."SALES_INC_VAT") / SUM(SUM("VW_TLOG_ZONE"."SALES_INC_VAT")) OVER (PARTITION BY DS_ZONE.ZONE_GEOGRAPHY, "VW_TLOG_ZONE"."PRODKEY") END
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 1083c5fb-9dc8-468c-8c30-c5caccb2048d
+          stepCounter: 6c152345-7089-4a3e-a1fb-f86646dfb4df
+        config: {}
+        dataType: FLOAT
+        defaultValue: ""
+        description: "-1 to 1 ."
+        keyColumnType: None
+        name: SUPPLEMENTAL_FACTOR
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: "0"
+                stepCounter: "0"
+            transform: ""
+        systemColumnType: None
     cteString: ""
     enabledColumnTestIDs: []
     sourceMapping:

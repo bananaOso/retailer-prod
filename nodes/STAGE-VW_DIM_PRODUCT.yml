@@ -353,7 +353,7 @@ operation:
           columnCounter: 9671a472-a035-45e2-9e12-0eba98d7c0db
           stepCounter: 950b8666-650d-4f58-802d-375d20ae3fb7
         config: {}
-        dataType: DECIMAL(38)
+        dataType: VARHCAR
         description: ""
         hashDetails: null
         name: IS_BUNDLE
