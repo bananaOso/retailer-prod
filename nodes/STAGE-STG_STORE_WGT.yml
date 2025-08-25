@@ -4,7 +4,7 @@ name: STG_STORE_WGT
 operation:
   config:
     insertStrategy: INSERT
-    postSQL: ""
+    postSQL: call sp()
     preSQL: ""
     testsEnabled: true
     truncateBefore: true
@@ -180,6 +180,46 @@ operation:
         description: "-1 to 1 ."
         keyColumnType: None
         name: SUPPLEMENTAL_FACTOR
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: "0"
+                stepCounter: "0"
+            transform: ""
+        systemColumnType: None
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: e3fd13a7-8c75-4542-a257-6d233e32954b
+          stepCounter: 6c152345-7089-4a3e-a1fb-f86646dfb4df
+        config: {}
+        dataType: VARCHAR
+        defaultValue: ""
+        description: ""
+        keyColumnType: None
+        name: NEW_COLUMN
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: "0"
+                stepCounter: "0"
+            transform: ""
+        systemColumnType: None
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 9a914b41-ae6f-42ad-8a03-3dc2836ee8e5
+          stepCounter: 6c152345-7089-4a3e-a1fb-f86646dfb4df
+        config: {}
+        dataType: VARCHAR
+        defaultValue: ""
+        description: ""
+        keyColumnType: None
+        name: NEW_COLUMN2
         nullable: true
         sourceColumnReferences:
           - columnReferences:

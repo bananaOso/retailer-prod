@@ -3,7 +3,6 @@ id: d231fed5-a720-4c13-b7bd-bd057eb41bb4
 name: PUBLIC_HOLIDAY_CALENDAR
 operation:
   database: ""
-  dataset: ""
   deployEnabled: true
   description: |-
     The Public Holiday Calendar provides reference data containing government-designated holidays for 119 countries since 1970, as well as the financial market holidays for the European Central Bank (ECB) and New York Stock Exchange (NYSE).
@@ -102,12 +101,9 @@ operation:
         nullable: true
         primaryKey: false
         uniqueKey: false
-    join:
-      joinCondition: FROM {{ ref('DATA_MARKETPLACE', 'PUBLIC_HOLIDAY_CALENDAR') }}
   name: PUBLIC_HOLIDAY_CALENDAR
   schema: ""
   sqlType: Source
-  table: PUBLIC_HOLIDAY_CALENDAR
   type: sourceInput
   version: 1
 type: Node

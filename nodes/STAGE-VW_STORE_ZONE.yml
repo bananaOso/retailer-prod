@@ -120,21 +120,6 @@ operation:
             transform: ""
       - appliedColumnTests: {}
         columnReference:
-          columnCounter: 740a583a-2af8-4901-9301-00b752d4c1e7
-          stepCounter: b598b9b3-9334-4652-9464-6fbe8ec60392
-        config: {}
-        dataType: VARCHAR(50)
-        description: ""
-        hashDetails: null
-        name: STATE
-        nullable: true
-        sourceColumnReferences:
-          - columnReferences:
-              - columnCounter: 0ffe2d81-cd07-4ceb-b896-29ec86061462
-                stepCounter: 1b456835-de85-4056-954c-f4c0c2ae0251
-            transform: ""
-      - appliedColumnTests: {}
-        columnReference:
           columnCounter: f6b6bfc5-458f-4703-b6f5-7c746d9ca259
           stepCounter: b598b9b3-9334-4652-9464-6fbe8ec60392
         config: {}
